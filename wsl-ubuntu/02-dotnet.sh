@@ -50,7 +50,7 @@ trap "rm -f \"${ERROR_FILE}\" \"${SOURCE_FILE}\"" EXIT SIGINT SIGTERM
 if command -v add-apt-repository &>/dev/null; then
    echo "⚙️ Adding the 'ppa:${PPA_REPO}' repository by using the 'add-apt-repository' utility..."
    trap "if [[ \"\$?\" -ne 0 ]]; then cat \"${ERROR_FILE}\"; echo \"❌ An error occurred while adding ppa:${PPA_REPO} repository\" >&2; fi && rm -rf \"${ERROR_FILE}\";" EXIT SIGINT SIGTERM
-   add-apt-repository --quiet --yes "ppa:${PPA_REPO}" >/dev/null 2>"${ERROR_FILE}"
+   add-apt-repository --yes "ppa:${PPA_REPO}" >/dev/null 2>"${ERROR_FILE}"
 else
    echo "⚙️ Manually adding the 'ppa:${PPA_REPO}' repository as 'add-apt-repository' utility is not available..."
 
